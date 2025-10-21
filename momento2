@@ -1,1 +1,88 @@
+public class Persona {
+    protected String nombre;
+    protected int edad;
 
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public void mostrarInfo() {
+        System.out.println(nombre + " tiene " + edad + " años.");
+    }
+}
+
+
+class Jugador extends Persona {
+    private String posicion;
+
+    public Jugador(String nombre, int edad, String posicion) {
+        super(nombre, edad);
+        this.posicion = posicion;
+    }
+
+    public void entrenar() {
+        System.out.println(nombre + " está entrenando como " + posicion + ".");
+    }
+
+    @Override
+    public void mostrarInfo() {
+        System.out.println("Jugador: " + nombre + " (" + posicion + "), edad: " + edad);
+    }
+}
+
+
+class Entrenador extends Persona {
+    private int experiencia;
+
+    public Entrenador(String nombre, int edad, int experiencia) {
+        super(nombre, edad);
+        this.experiencia = experiencia;
+    }
+
+    public void dirigirPartido() {
+        System.out.println(nombre + " está dirigiendo el partido con " + experiencia + " años de experiencia.");
+    }
+
+    @Override
+    public void mostrarInfo() {
+        System.out.println("Entrenador: " + nombre + " con " + experiencia + " años de experiencia.");
+    }
+}
+
+
+class Medico extends Persona {
+    private String especialidad;
+
+    public Medico(String nombre, int edad, String especialidad) {
+        super(nombre, edad);
+        this.especialidad = especialidad;
+    }
+
+    public void atenderJugador() {
+        System.out.println(nombre + " está atendiendo a un jugador (" + especialidad + ").");
+    }
+
+    @Override
+    public void mostrarInfo() {
+        System.out.println("Médico: " + nombre + " - Especialidad: " + especialidad);
+    }
+}
+
+
+public class DemoEquipo {
+    public static void main(String[] args) {
+        Jugador j = new Jugador("Juan Pérez", 25, "Delantero");
+        Entrenador e = new Entrenador("Carlos Gómez", 50, 20);
+        Medico m = new Medico("Ana Torres", 40, "Fisioterapia");
+
+        j.mostrarInfo();
+        j.entrenar();
+
+        e.mostrarInfo();
+        e.dirigirPartido();
+
+        m.mostrarInfo();
+        m.atenderJugador();
+    }
+}
